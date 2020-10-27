@@ -113,8 +113,9 @@ class Order(models.Model):
         for cart_item in self.items.all():
             total_saved+=cart_item.amount_saved()
         return total_saved
-
-
-
-
-
+class Address(models.Model):
+    user=models.ForeignKey(MyUser,on_delete=models.CASCADE)
+    street_address=models.CharField(max_length=255,null=True,blank=True)
+    address_type=models.CharField(max_length=255,choices=ADDRESS_CHOICES,null=True)
+    def __str__(self):
+        return f"{self.user.first_name } {self.user.last_name}"
