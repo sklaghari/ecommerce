@@ -1,0 +1,45 @@
+{%extends 'ecommercewebapp/base.html'%}
+{%block content%}
+{%include 'ecommercewebapp/carousel.html'%}
+  <!--Main layout-->
+  <main>
+    <div class="container">
+      {%include 'ecommercewebapp/catagorynavbar.html'%}
+      <!--Section: Products v.3-->
+      <h1><strong>Catagory:{{label}}</strong></h1>
+      <section class="text-center mb-4">
+        <!--Grid row-->
+        <div class="row wow fadeIn">
+          {%for item in items%}
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4">
+            <!--Card-->
+            <div class="card" >
+              <!--Card image-->
+              <div class="view overlay"><img src="{{item.img.url}}" class="card-img-top" alt="">
+                <a href="{{ item.get_absolute_url }}"><div class="mask rgba-white-slight"></div></a>
+              </div>
+              <!--Card image-->
+              <!--Card content-->
+              <div class="card-body text-center">
+                <!--Category & Title-->
+                <a href="" class="grey-text"><h5>{{item.catagory|linebreaks}}</h5></a>
+                <h5><strong>
+                    <a href="" class="dark-grey-text">{{item.title|linebreaks|truncatechars:33}}<span class="badge badge-pill success-color">{{item.badge|linebreaks}}</span></a>
+                  </strong></h5>
+                <h4 class="font-weight-bold blue-text"><strong>{{item.price}}PKR</strong></h4>
+              </div>
+              <!--Card content-->
+            </div>
+            <!--Card-->
+          </div>
+        {%endfor%}
+        </div>
+        <!--Grid row-->
+      </section>
+      <!--Section: Products v.3-->
+      {%include 'ecommercewebapp/pagination.html'%}
+    </div>
+  </main>
+  <!--Main layout-->
+{%endblock%}

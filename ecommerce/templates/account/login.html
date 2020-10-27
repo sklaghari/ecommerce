@@ -1,0 +1,21 @@
+
+{% load socialaccount %}
+{% providers_media_js %}
+{% load crispy_forms_tags %}
+<html>
+<body>
+<div>
+  {{user}}
+<a href="{% provider_login_url 'facebook' method='js_sdk' %}">Facebook Connect</a>
+  <a href="{% provider_login_url 'google'%}">google Connect</a>
+  <a href="{%url 'account_signup'%}">Signup</a>
+  <form class="login" method="POST" action="{% url 'account_login' %}">
+  {% csrf_token %}
+  {{ form|crispy }}
+    <input type="submit" value="Login"/>
+  </form>
+  <a href="{%url 'account_reset_password' %}">Forgot Password</a>
+
+</div>
+</body>
+</html>

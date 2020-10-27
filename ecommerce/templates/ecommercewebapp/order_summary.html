@@ -1,0 +1,62 @@
+{%extends 'ecommercewebapp/base.html'%}
+{% load static %}
+{%block content%}
+  <!--Main layout-->
+  <main class="mt-5 pt-4">
+      <table class="table table-bordered table-hover table-dark">
+          <thead>
+            <tr>
+              <th scope="col">Item #</th>
+                <th scopre="col">Image of Item</th>
+              <th scope="col">Name</th>
+                <th scope="col">Catagory</th>
+              <th scope="col">Orignal Price</th>
+              <th scope="col">Store#6 Discount %</th>
+                 <th scope="col">Price of one item after Discount</th>
+                <th scope="col">Total Ordered Quantity</th>
+                <th scope="col">Total Price</th>
+                <th scope="col">Delete Item</th>
+            </tr>
+          </thead>
+          {%for cart_item in object.items.all%}
+          <tbody>
+            <tr>
+              <td>{{forloop.counter}}</td>
+                <td><img src="{{cart_item.item.img.url}}" class="card-img-top" alt=""></td>
+                <td><strong><a class="text-primary" href="{%url 'ecommercewebapp:product' cart_item.item.slug %}">{{cart_item.item.title}}</a></strong></td>
+              <td>{{cart_item.item.catagory}}</td>
+                <td>{{cart_item.item.price}}</td>
+                <td>{{cart_item.item.discountPercentage}}%</td>
+                <td>{{cart_item.item.get_total_discounted_price}}</td>
+                <td>
+                    <a class="text-warning" href="{%url 'ecommercewebapp:add_to_cart' cart_item.item.slug %}"><i class="fas fa-plus"></i></a>
+                    {{cart_item.quantity}}
+                    <a class="text-warning" href="{%url 'ecommercewebapp:remove_single_item_from_cart' cart_item.item.slug%}"><i class="fas fa-minus" ></i></a></td>
+                <td>{{cart_item.total_price}}</td>
+                <td><a class="text-warning" href="{%url 'ecommercewebapp:delete_item' cart_item.item.slug%}"><i class="fas fa-trash"></i></a></td>
+            </tr>
+          </tbody>
+          {%endfor%}
+          <tr>
+              <td colspan="8"><h2><strong>Total Order Price</strong></h2></td>
+              <td colspan="2"><h3><strong>{{object.total_order_price}}PKR</strong></h3></td>
+          </tr>
+          <tr>
+              <td colspan="8"><h2><strong>Total amount saved at store # 06</strong></h2></td>
+              <td colspan="2"><h3><strong>{{object.total_amount_saved}}PKR</strong></h3></td>
+          </tr>
+        </table>
+      <div class="container">
+          {%if object.items.all%}
+      <a class="btn btn-primary btn-lg btn-block" href="checkout"> Checkout </a>
+          {%else%}
+          <h1>No Item Available in Cart </h1>
+          <a class="btn btn-primary btn-lg btn-block" href="/"> Continue shopping </a>
+          {%endif%}
+      </div>
+
+  </main>
+  <!--Main layout-->
+
+
+{%endblock%}

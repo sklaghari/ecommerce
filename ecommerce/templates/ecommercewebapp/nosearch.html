@@ -1,0 +1,50 @@
+{%extends 'ecommercewebapp/base.html'%}
+{%block content%}
+{%include 'ecommercewebapp/carousel.html'%}
+  <!--Main layout-->
+  <main>
+    <div class="container">
+      {%include 'ecommercewebapp/catagorynavbar.html'%}
+      <!--Section: Products v.3-->
+      <h1><strong>Please enter something for search Thanks buddy</strong></h1>
+       <div class="row wow fadeIn">
+          {%for item in items%}
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4">
+            <!--Card-->
+            <div class="card" >
+              <!--Card image-->
+              <div class="view overlay"><img src="{{item.img.url}}" class="card-img-top" alt="">
+                <a href="{{ item.get_absolute_url }}"><div class="mask rgba-white-slight"></div></a>
+              </div>
+              <!--Card image-->
+              <!--Card content-->
+              <div class="card-body text-center">
+                <!--Category & Title-->
+                <a href="" class="grey-text"><h5>{{item.catagory|linebreaks}}</h5></a>
+                <h5><strong>
+                    <a href="" class="dark-grey-text">{{item.title|linebreaks|truncatechars:33}}<span class="badge badge-pill success-color">{{item.badge|linebreaks}}</span></a>
+                  </strong></h5>
+                {%if item.discountPercentage%}
+                <h4 class="font-weight-bold blue-text"><del>{{item.price}}PKR</del></h4>
+                <h4 class="font-weight-bold red-text"><strong>{{item.get_total_discounted_price}}</strong></h4>
+                <h4 class="font-weight-bold red-text"><strong>Discount:{{item.discountPercentage}}%</strong></h4>
+                {%else%}
+                <h4 class="font-weight-bold red-text"><strong>{{item.price}}</strong></h4>
+                {%endif%}
+              </div>
+              <!--Card content-->
+            </div>
+            <!--Card-->
+          </div>
+        {%endfor%}
+        </div>
+        <!--Grid row-->
+      </section>
+      <!--Section: Products v.3-->
+      {%include 'ecommercewebapp/pagination.html'%}
+    </div>
+    </div>
+  </main>
+  <!--Main layout-->
+{%endblock%}

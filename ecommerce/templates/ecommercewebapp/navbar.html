@@ -1,0 +1,71 @@
+{%load cart_template_tags%}
+<!-- Navbar -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+    <div class="container">
+
+      <!-- Brand -->
+      <a class="navbar-brand waves-effect" href="/">
+        <strong class="blue-text">Store#6</strong>
+      </a>
+
+      <!-- Collapse -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="dropdown">
+                  <span class="btn btn-secondary dropdown-toggle m-0 p-2" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                    All
+                  </span>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="/">Electrical</a>
+                    <a class="dropdown-item" href="/">Instrument</a>
+                    <a class="dropdown-item" href="/">Mechanical</a>
+                    <a class="dropdown-item" href="/">Chemical</a>
+                    <a class="dropdown-item" href="/">IT</a>
+                    <a class="dropdown-item" href="/">Admin</a>
+                    <a class="dropdown-item" href="/">HR</a>
+                    <a class="dropdown-item" href="/">Training</a>
+                  </div>
+                </div>
+
+      <!-- Links -->
+      <div class="collapse navbar-collapse">
+        <form  action="/search/">
+          <div class="input-group pl-0">
+            <input class="form-control" name='q' type="text" placeholder="Search">
+          </div>
+        </form>
+      </div>
+        <!-- Right -->
+        <ul class="navbar-nav nav-flex-icons">
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="{%url 'ecommercewebapp:order_summary' %}">
+              <span class="badge red z-depth-1 mr-1"> {{request.user|cart_item_count2}} </span>
+              <i class="fas fa-shopping-cart"></i>
+              <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+            </a>
+          </li>
+          {%if user.is_authenticated%}
+          <li class="nav-item">
+            <a href="/" class="nav-link border border-light rounded waves-effect"
+              target="_blank">
+              <i class="fas fa-user mr-2"></i>{{user.username}}
+            </a>
+          </li>
+
+          {%else%}
+          <li class="nav-item">
+            <a href="/" class="nav-link border border-light rounded waves-effect"
+              target="_blank">
+              <i class="fas fa-user mr-2"></i>User Account
+            </a>
+          </li>
+          {%endif%}
+        </ul>
+
+      </div>
+
+    </div>
+  </nav>
+  <!-- Navbar -->

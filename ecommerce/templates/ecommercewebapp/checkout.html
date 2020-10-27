@@ -1,0 +1,25 @@
+{% extends 'ecommercewebapp/base.html'%}
+{%load static%}
+{%block content%}
+  <!--Main layout-->
+  <main class="mt-5 pt-4">
+    <div>
+      {%for order in order.items.all%}
+      {{order.item.title}}
+      {%endfor%}
+    </div>
+    <form>
+      {{form.as_p}}
+    </form>
+    <form>
+    </form>
+    <div>
+    </div>
+  </main>
+  </main>
+  <!--Main layout-->
+
+
+
+
+{%endblock content%}
