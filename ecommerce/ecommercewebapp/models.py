@@ -117,5 +117,6 @@ class Address(models.Model):
     user=models.ForeignKey(MyUser,on_delete=models.CASCADE)
     street_address=models.CharField(max_length=255,null=True,blank=True)
     address_type=models.CharField(max_length=255,choices=ADDRESS_CHOICES,null=True)
+    country=models.CharField(max_length=255,null=True,blank=True)
     def __str__(self):
         return f"{self.user.first_name } {self.user.last_name}"
